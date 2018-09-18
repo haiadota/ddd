@@ -1,0 +1,47 @@
+/**index.wxss**/
+
+.title {
+  color: #000;
+  font-size: 36rpx;
+  margin: 50rpx 0 30rpx;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0rpx 6rpx 25rpx #ccc;
+  border-radius: 20rpx;
+  width: 90%;
+  height: auto;
+  background: #fff;
+  overflow: hidden;
+}
+.tab {
+  display: flex;
+  border-bottom: 1px solid;
+  color: #e3a226;
+  font-size: 35rpx;
+}
+.tab-item{
+  flex: 1;
+  text-align: center;
+  line-height: 100rpx;
+}
+.delected{
+  color: #fff;
+  background:linear-gradient(to right,#e3a226, #f1bb54);
+}
+.lists {
+  max-height: 800rpx;
+  overflow-y: auto;
+  margin: 30rpx 0;
+  color: #666;
+}
+.lists-item{
+  text-indent: 20rpx;
+  line-height: 72rpx;
+  padding: 0rpx 20rpx;
+}
+.active{
+  background: rgba(119, 119, 119, 0.05);
+  color: #e3a226;
+}

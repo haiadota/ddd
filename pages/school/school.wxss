@@ -1,0 +1,53 @@
+.title{
+  font-size: 40rpx;
+  color: #e3a226;
+  font-weight: bolder;
+}
+.explain{
+  width: 100%;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  margin-bottom: 43rpx;
+}
+.explain-item{
+  padding-left: 30rpx;
+}
+.symbol{
+  height: 50rpx;
+  width: 48rpx;
+  margin-right: 50rpx;
+}
+.top-half{
+  font-size: 34rpx;
+  letter-spacing: 2rpx;
+}
+.optList{
+  margin-top: 39rpx;
+  display: flex;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  color: #565656;
+}
+.opt{
+  display: flex;
+  align-items: center;
+  margin-right: 50rpx;
+}
+.circle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25rpx;
+  height: 25rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+.center{
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #fff;
+}

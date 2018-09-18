@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/school/school",
+    "pages/building/building"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#e3a226",
+    "navigationBarTitleText": "索为校园助手",
+    "navigationBarTextStyle":"white",
+    "disableScroll": true
+  }
+}
