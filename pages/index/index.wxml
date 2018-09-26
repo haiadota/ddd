@@ -14,15 +14,15 @@
         {{item.text}}
       </view>
     </view>
-    <view class="lists">
+    <scroll-view scroll-y class="lists">
       <navigator
-      url="../school/school?id={{item.id}}&name={{item.name}}"
+      url="../building/building?id={{item.id}}&name={{item.name}}"
       wx:for="{{schoolList}}"
       wx:key="item.id"
       class="lists-item"
       hover-class="active">
         <text>{{item.name}}</text>
       </navigator>
-    </view>
+    </scroll-view>
   </view>
 </view>

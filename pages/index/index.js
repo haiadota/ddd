@@ -14,7 +14,7 @@ Page({
     var schoolName = wx.getStorageSync('schoolName') || ''
     if (schoolId && schoolName) {
       wx.navigateTo({
-        url: '../school/school?id=' + schoolId + '&name=' + schoolName
+        url: '../building/building?id=' + schoolId + '&name=' + schoolName
       })
     }
   },

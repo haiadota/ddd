@@ -1,10 +1,6 @@
 <view class="container">
   <view class="head">
-    <view class="title">
-      <text>空闲教室</text>
-      <text style='color:#e3a226;font-weight:600;'>{{seatFree}}</text>
-      <text>/{{sum}}</text>
-    </view>
+    <view class="title">自习教室推送</view>
     <view class="btn-group">
       <view
       class="{{item.value===type?'btn-active':'btn'}}"
@@ -18,18 +14,25 @@
   </view>
   <view class="list-wrap">
     <view class="list">
-      <view
+      <navigator
+      wx:for="{{buildingList}}"
+      wx:key="item.id"
       class="list-item"
-      wx:key="index"
-      wx:for="{{classroomList}}">
-        <view class="item-men" wx:for="{{item}}" wx:key="item.id">
-          <view class="circle">
-          <image class='percentImg' src='{{bdImgList[item.status]}}' style='top:{{item.step}}'></image>
-          <view class='percentTxt'>{{item.freeRate}}%</view>
+      style='background: {{typeList[item.type].color}}'
+      url='/pages/class/class?buildingId={{item.buildingId}}&name={{item.name}}&seatFree={{item.seatFree}}&sum={{item.sum}}'
+      >
+        <image class="symbol" src="{{typeList[item.type].src}}"></image>
+        <view class='content'>
+          <view class="top-half">
+            <text>{{item.name}}</text><div>
+            <text class='font60'>{{item.seatFree}}</text>
+            <text class='font28'> 间</text></div>
           </view>
-          <view class="spacing">{{item.name}}</view>
+          <view class="lower-half">
+            <text>推荐: </text><text>BX102•</text><text>BX102•</text><text>BX102</text>
+          </view>
         </view>
-      </view>
+      </navigator>
     </view>
   </view>
 </view>

@@ -1,53 +1,51 @@
 const app = getApp()
 Page({
   data: {
-    buildingId: '',
+    schoolId: '',
     type: 1,
-    tab: [{ text: '空闲率↓', value: 1 }, { text: '教室名称↑', value: 2 }],
-    bdImgList: ['/image/80.png', '/image/50.png', '/image/20.png'],
-    classroomList: []
+    tab: [{ text: '空闲率↓', value: 1 }, { text: '离我最近', value: 0 }],
+    typeList: [
+      { value: 'highRate', src: '/image/buildinggreen.png', color: '#44df98' },
+      { value: 'middleRate', src: '/image/buildingyellow.png', color: '#fcae44' },
+      { value: 'lowRate', src: '/image/buildingred.png', color: '#ff4736' }
+      ]
   },
   onLoad: function (options) {
+    wx.setStorageSync('schoolId', options.id)
+    wx.setStorageSync('schoolName', options.name)
+    this.setData({
+      schoolId: options.id
+    })
     wx.setNavigationBarTitle({
       title: options.name
     })
-    this.setData({
-      buildingId: options.buildingId,
-      seatFree: options.seatFree,
-      sum: options.sum
-    })
-    this.getClassroomInfo()
+    this.getBuildingInfo()
   },
   onPullDownRefresh: function () {
-    this.getClassroomInfo()
+    this.getBuildingInfo()
   },
-  getClassroomInfo () {
+  getBuildingInfo: function () {
     wx.request({
-      url: app.globalData.prefix + '/classroom/queryClassroomFreeRateByBuildingId',
+      url: app.globalData.prefix + '/school/queryBuildingSeatfreeRate',
       method: 'POST',
-      data: { buildingId: this.data.buildingId, type: this.data.type },
-      header: {
-        'content-type': 'application/json'
-      },
+      data: { schoolId: this.data.schoolId, type: this.data.type },
+      header: {'content-type': 'application/json'},
       success: res => {
-        let result = res.data.data, len = result.length, arr = []
-        for (var j = 0; j < len; j++) {
-          result[j].freeRate = parseInt(result[j].freeRate)
-          if (result[j].freeRate > 50) {
-            result[j].status = 0
-            result[j].step = (92 - result[j].freeRate) * 0.8 + 'rpx'
-          } else if (result[j].freeRate <= 20) {
-            result[j].status = 2
-            result[j].step = (92 - result[j].freeRate) * 0.8 + 'rpx'
+        let arr = res.data.data
+        for (let i = 0; i < arr.length; i++) {
+          let num = arr[i].seatFree/arr[i].sum
+          if (num >= 0.6){
+            arr[i].type = 0
+          } else if (num < 0.2) {
+            arr[i].type = 2
           } else {
-            result[j].status = 1
-            result[j].step = (92 - result[j].freeRate) * 0.8 + 'rpx'
+            arr[i].type = 1
           }
         }
-        for (var i = 0; i < len; i += 3) {
-          arr.push(result.slice(i, i + 3))
-        }
-        this.setData({classroomList: arr})
+        this.setData({
+          buildingList: arr
+        })
+        wx.stopPullDownRefresh()
       }
     })
   },
@@ -55,6 +53,5 @@ Page({
     this.setData({
       type: e.currentTarget.dataset.value
     })
-    this.getClassroomInfo()
   }
 })

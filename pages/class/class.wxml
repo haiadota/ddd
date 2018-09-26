@@ -1,0 +1,35 @@
+<view class="container">
+  <view class="head">
+    <view class="title">
+      <text>空闲教室</text>
+      <text style='color:#e3a226;font-weight:600;'>{{seatFree}}</text>
+      <text>/{{sum}}</text>
+    </view>
+    <view class="btn-group">
+      <view
+      class="{{item.value===type?'btn-active':'btn'}}"
+      bindtap="typeChange"
+      data-value="{{item.value}}"
+      wx:for="{{tab}}"
+      wx:key="item.value">
+        {{item.text}}
+      </view>
+    </view>
+  </view>
+  <view class="list-wrap">
+    <view class="list">
+      <view
+      class="list-item"
+      wx:key="index"
+      wx:for="{{classroomList}}">
+        <view class="item-men" wx:for="{{item}}" wx:key="item.id">
+          <view class="circle">
+          <image class='percentImg' src='{{bdImgList[item.status]}}' style='top:{{item.step}}'></image>
+          <view class='percentTxt'>{{item.freeRate}}%</view>
+          </view>
+          <view class="spacing">{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
